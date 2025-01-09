@@ -44,6 +44,8 @@ def strat_split_data_make_model_save_metrics(X, y, cat_features, seed, n_splits,
     models = []
     auc_scores = []
     accuracy_scores = []
+    confusions = []
+
     
     # Split the data and create pools
     for train_index, test_index in sss.split(X, y):
@@ -71,8 +73,13 @@ def strat_split_data_make_model_save_metrics(X, y, cat_features, seed, n_splits,
         # Calculate accuracy score for each split
         accuracy = accuracy_score(y_test, model.predict(X_test))
         accuracy_scores.append(accuracy)
-    
-    return models, auc_scores, accuracy_scores
+        
+        if n_splits == 1:
+            # # confusion matrix
+            conf_matrix = confusion_matrix(y_test, model.predict(X_test))
+            confusions.append(conf_matrix)    
+        
+    return models, auc_scores, accuracy_scores, confusions
       
         
 

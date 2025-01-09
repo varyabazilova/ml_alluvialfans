@@ -5,3 +5,6 @@
 AGU jgr earth surface - fans_reviews/
 Supporting Information for ML_hma/
 *zip
+code/__pycache__/
+code/.ipynb_checkpoints/
+code/catboost_info/
